@@ -107,12 +107,10 @@ RUN yum install -y gvim firefox
 ```bash
 xhost local:gizaoui
 docker builder prune && docker build -t mycentos .
-dpsaq | xargs docker rm -f # Suppresion des container
+dpsaq | xargs docker rm -f # Suppression des container
 docker container run -it --name c1 -u $USER --env="DISPLAY" --net=host -v '/tmp:/tmp' mycentos
 docker container run -it --name c1 -u $USER --env="DISPLAY" --net=host -v '/home/gizaoui/data:/tmp' mycentos # creation de 'data' en 'root'
-docker container run -it --name c1 -u $USER --env="DISPLAY" --net=host  --mount type=bind,source=/home/gizaoui,destination=/tmp mycentos
-
-
+docker container run -it --name c1 -u $USER --env="DISPLAY" --net=host  --mount type=bind,source=/home/gizaoui,destination=/home/gizaoui mycentos
 docker start c1
 docker exec -ti c1 bash
 ```
