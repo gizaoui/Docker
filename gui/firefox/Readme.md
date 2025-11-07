@@ -113,6 +113,8 @@ docker container run -it --name c1 -u $USER --env="DISPLAY" --net=host -v '/home
 docker container run -it --name c1 -u $USER --env="DISPLAY" --net=host  --mount type=bind,source=/home/gizaoui,destination=/home/gizaoui mycentos
 docker start c1
 docker exec -ti c1 bash
+docker stats --format 'CPU: {{.CPUPerc}}\tMEM: {{.MemPerc}}'
+
 ```
 
 
@@ -126,23 +128,23 @@ docker exec -ti c1 bash
 
 
 
-  469  for pkg in docker.io docker-doc docker-compose podman-docker containerd runc; do  apt-get remove $pkg; done
-  470  apt-get install ca-certificates curl
-  471   install -m 0755 -d /etc/apt/keyrings
-  472  curl -fsSL https://download.docker.com/linux/debian/gpg -o /etc/apt/keyrings/docker.asc
-  473  chmod a+r /etc/apt/keyrings/docker.asc
-  474  echo   "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.asc] https://download.docker.com/linux/debian \
-  475    $(. /etc/os-release && echo "$VERSION_CODENAME") stable" |    tee /etc/apt/sources.list.d/docker.list > /dev/null
-  476  cat /etc/apt/sources.list.d/docker.list
-  478   apt-get update
-  479   apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
-  480  systemctl status docker
-  481  systemctl restart docker
-  482  systemctl status docker
-  483  systemctl enable docker
-  486  chmod 777 /var/run/docker.sock
-  489  usermod -a -G docker gizaoui
-  490  groupmod -g gizaoui docker
+-  469  for pkg in docker.io docker-doc docker-compose podman-docker containerd runc; do  apt-get remove $pkg; done
+-  470  apt-get install ca-certificates curl
+-  471   install -m 0755 -d /etc/apt/keyrings
+-  472  curl -fsSL https://download.docker.com/linux/debian/gpg -o /etc/apt/keyrings/docker.asc
+-  473  chmod a+r /etc/apt/keyrings/docker.asc
+-  474  echo   "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.asc] https://download.docker.com/linux/debian \
+-  475    $(. /etc/os-release && echo "$VERSION_CODENAME") stable" |    tee /etc/apt/sources.list.d/docker.list > /dev/null
+-  476  cat /etc/apt/sources.list.d/docker.list
+-  478   apt-get update
+-  479   apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
+-  480  systemctl status docker
+-  481  systemctl restart docker
+-  482  systemctl status docker
+-  483  systemctl enable docker
+-  486  chmod 777 /var/run/docker.sock
+-  489  usermod -a -G docker gizaoui
+-  490  groupmod -g gizaoui docker
 
 
  
